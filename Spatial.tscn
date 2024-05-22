@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://models/town.glb" type="PackedScene" id=1]
+
+[sub_resource type="CapsuleShape" id=3]
+radius = 1.38949
+
+[sub_resource type="CapsuleMesh" id=1]
+
+[sub_resource type="BoxShape" id=2]
+
+[node name="Spatial" type="Spatial"]
+transform = Transform( 2.41653, 0, 0, 0, 1.48313, 0, 0, 0, 2.9447, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.402796, 0, -0.0948608, 0, 0.67425, 0, 0.0778464, 0, -0.33055, 0, 8.24942, -7.65256 )
+
+[node name="KinematicBody" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.0202095, -1.98506, 0, 0.503558, -0.0202095, 1.47992e-07, 8.42041, 4.04826e-08 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 0.506221, 0, 0, 0, 0.32755, 0.0158716, 0, 0.00402621, 0.722859, 0.477372, 2.97739, -0.0303121 )
+shape = SubResource( 3 )
+
+[node name="CSGMesh" type="CSGMesh" parent="KinematicBody/CollisionShape"]
+mesh = SubResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 1.49713e-16, 0, 0, 1, -0.780259, 1.91633e-14, 0.677061 )
+
+[node name="town" parent="StaticBody" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 79.0592, 0, 0, 0, 1, -2.51181e-09, 0, 2.9667e-07, 234.507, 0, -3.21507e-07, 0 )
+shape = SubResource( 2 )
